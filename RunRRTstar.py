@@ -34,9 +34,6 @@ tree = my_generator.createRRTstar(random_init, 800)
 fig = plt.figure()
 ax = fig.add_subplot(111)
 
-# plot the start point in red
-ax.plot(random_init[0], random_init[1], 'ro')
-
 # plot the obstacles in the environment
 for obstacle in obstacle_array:
     ax.add_patch(descartes.PolygonPatch(obstacle, fc='blue', alpha=0.5))
@@ -47,6 +44,9 @@ for i in range(1, len(tree.getVertices())):
 for edge in tree.getEdges():
     line = shapely.geometry.LineString([list(edge[0]), list(edge[1])])
     ax.plot(*np.array(line).T, color='green', linewidth=1, solid_capstyle='round')
+
+# plot the start point in red
+ax.plot(random_init[0], random_init[1], 'ro')
 
 # show plot
 ax.axis('equal')
